@@ -1,0 +1,14 @@
+---
+author: Lemuel Canady, Jr
+version: 0.1.0
+outdir: ../dist
+outfile: format.$v.min.txt
+main: ./src/setup.mu
+license: MIT
+homepage: https://githib.com/lcanady/mushcode-slm
+
+# files listed below will be listed at the beginning
+# of the formatted document.
+files:
+  - ./LICENSE
+  - ./README.md
