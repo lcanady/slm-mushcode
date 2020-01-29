@@ -1,10 +1,10 @@
 # Global Format Object
 
-This repo contains the Silver Line Mush Global Format Object. This repo uses [mush-formatter](https://github.com/digibear-io/mush-format). A fully compiled version of the code is aviable in `/dist`.
+This repo contains the Silver Line Mush Global Format Object. This repo uses [mush-formatter](https://github.com/digibear-io/mush-format). A fully compiled version of this library is aviable in `/dist`.
 
 **This Repo is a Demo Right now**
 
-This repo is still being built, and not 100% functional. When it's ready, I'll push to the master branch and tag it.
+This repo is still being built, and not 100% functional. When it's ready, I'll push to the master branch and tag it. While still in strict development mode, I'm going to posting continous updates to the master branch until it's ready for `0.1.0` testing.
 
 ## Installation
 

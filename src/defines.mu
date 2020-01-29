@@ -1,3 +1,14 @@
+// When a define is meant to be 'in-line', it has to follow the 
+// same rules as basic formatting: If it occupies the first 
+// character of a line, it's considered a new command.
+
+// Check for immortal status.  
+#define is_immortal\s+(.*)  
+	@assert lflags($1) = {
+		@pemit $1 = permission denied.
+	}
+#end
+
 // Macro for creating new objects & tags
 #define create\s+(.*)\s?=\s?(.*) 
 @if not(match(tag($2),#-1)) = {
@@ -25,3 +36,7 @@
 @pemit me = %chINFO:%cn $1
 #end
 
+// Macro to send an in-game message.
+#define msg\s+(.*)
+	@pemit $1 = %chGame>>%cn $1;
+#end

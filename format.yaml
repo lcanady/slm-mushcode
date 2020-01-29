@@ -3,9 +3,9 @@ author: Lemuel Canady, Jr
 version: 0.1.0
 outdir: ../dist
 outfile: format.$v.min.txt
-main: ./src/setup.mu
+main: ./src/index.mu
 license: MIT
-homepage: https://githib.com/lcanady/mushcode-slm
+homepage: https://githib.com/digibear-io/slm-installer
 
 # files listed below will be listed at the beginning
 # of the formatted document.

@@ -34,11 +34,7 @@
 		[switch(
 			lcstr(%q<just>),
 			center,
-				[center(
-					%q<lhs>%0%q<rhs>,
-					%q<length>,
-					%q<sep>
-				)],
+				printf($:%q<sep>:^%q<length>s,%q<lhs>%b%0%b%q<rhs>),
 			left,
 				[ljust(
 					%q<lhs>%0%q<rhs>,
@@ -53,12 +49,7 @@
 				)],
 				
 			// Default case.
-			[center(
-				%q<lhs>%0%q<rhs>,
-				%q<length>,
-				%q<sep>
-			)]
-			
+			printf($:%q<sep>:^%q<length>s,%q<lhs>%b%0%b%q<rhs>)
 		)]
 	)
 

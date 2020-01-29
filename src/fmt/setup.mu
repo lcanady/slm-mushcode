@@ -1,4 +1,3 @@
-#include ./defines.mu
 
 #create Globals: Format Object <FMT> = fmt
 
@@ -13,3 +12,4 @@
     } 
 
 #include ./headers.mu
+#include ./config.mu
