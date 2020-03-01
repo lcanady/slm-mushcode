@@ -1,18 +1,80 @@
 
+/*
+###############################################################################
+### Global Room Parent ########################################################
+*/
+
+@if not(tag(grp)) = {
+        @dig Global Parent Room;
+        @tag/add grp = [lastcreate(me, room)];
+        @set #grp = safe no_modify float;
+        @set #grp/desc = DEFAULT
+
+        think Global Parent Object Set %([tag(grp)]%).
+    }
+
+
+/*
+-------------------------------------------------------------------------------
+--- Name Format ---------------------------------------------------------------
+*/
+
 @nameformat #grp = [header(dname(%!))]
 
-@conformat #grp =         
-    [header(%b%chCharacters%cn%b, left,,,%cb-%cn)]%r
-    [ljust(%b%bName,67)]
-    [rjust(Idle,10)]
-    %r[repeat(%cb-%cn,78)]
-    [iter(%# %0,
+
+/*
+-------------------------------------------------------------------------------
+--- Con Format ----------------------------------------------------------------
+
+*/
+
+@conformat #grp =
+    [setq(+, iter(%0, istype(##, Thing), ##), things)]
+    [if(or(strlen(%0), gte(bittype(%#),2)), header(%b%chCharacters%cn%b, left))]
+    [iter(
+        [if(
+            or(
+                not(hasflag(%!,dark)),
+                gte(bittype(%#),2)
+            ), 
+            %# %0
+        )],
         if(
             istype(##,PLAYER),
-            [setq(+, get(##/caption), cap)]        
+            [setq(+, title(##), cap)]        
             // Check to see if staff indicator is needed.
-            %r[if(gte(bittype(##), 3), %cy*%cn,space(2))]
-            [ljc([dname(##)][if(strlen(%q<cap>),%,%b%q<cap>)], 66)]
+            %r[if(
+                gte(bittype(##), 3), %cy*%cn,
+                if( gte(bittype(##), 2), %ch%cg+%cn,space(1))
+            )]
+            [ljc(
+                [ljust(dname(##),22)]
+                [if(strlen(%q<cap>),%q<cap>)], 72
+            )]
             [idlefmt(##)]
         )
-    )] 
+    )]
+
+   
+/*
+-------------------------------------------------------------------------------
+--- Exit Format ---------------------------------------------------------------
+*/
+
+@exitformat #grp = 
+    [if(
+        words(%0),
+        [header(%b%chExits%cn%b, left)]%r
+        [columns(
+            [sort(
+                [iter(
+                    %0,
+                    [regedit(cname(##), <(.*)>, <%chcb$1%cn>)],,|
+                )],,|
+            )],39,2,,,,,,,,|
+        )]%r
+        
+        [footer(v(footer))],
+        [footer(v(footer))]
+    )]     
+

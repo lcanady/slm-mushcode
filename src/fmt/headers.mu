@@ -43,8 +43,32 @@
 	)
 
 // Make the function global.
-&ufun_header #fmt = 
+&ufunpr_header #fmt = 
 	ulocal(#fmt/fn_header, %0, %1, %2, %3, %4, %5)
+
+/*
+-------------------------------------------------------------------------------
+--- fn_footer -----------------------------------------------------------------
+
+	Show a footer.  If the footer has text, show it in a title frame else
+	just repeat the seperator for 78 characters.
+
+-------------------------------------------------------------------------------
+*/
+
+
+&fn_footer #fmt = 
+	[if(
+		strlen(%0),
+		u(fn_header, %0, right),
+		repeat(
+			setr(+, v(d.sep), sep),
+			div( 78, strlen(%q<sep>))
+		)
+	)]
+
+// Make it a global function!
+&ufunpr_footer #fmt = ulocal(#fmt/fn_footer, %0)
 
 
 /*
@@ -82,7 +106,11 @@
 	)]
 
 // Make the function global
-&ufun_dname u(#fmt/fn_dname, %0)
+&ufunpr_dname u(#fmt/fn_dname, %0)
+
+
+&ufunpr_title #fmt = get(%0/caption)
+
 
 /*
 -------------------------------------------------------------------------------
@@ -111,7 +139,7 @@
 
 */
 
-&fn_idlefmt #fmt = rjust(timefmt($!2xh $!2fm $2gs,idle(%0)),10)
+&fn_idlefmt #fmt = rjust(singletime(idle(%0)),4)
 
 // Make it a privileged global
 	&ufunpr_idlefmt #fmt = ulocal(#fmt/fn_idlefmt, %0)
